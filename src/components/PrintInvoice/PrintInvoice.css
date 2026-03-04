@@ -12,7 +12,7 @@
     justify-content: center;
     padding: var(--space-2xl) var(--space-lg);
     animation: fadeIn 0.3s ease;
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .print-container {
@@ -60,7 +60,11 @@
     padding: 40px;
     box-shadow: var(--shadow-lg);
     font-family: 'Sarabun', 'Noto Sans Thai', sans-serif;
-    /* Standard Thai document font */
+    width: max-content;
+    min-width: 700px;
+    max-width: none;
+    margin: 0 auto;
+    transform-origin: top left;
 }
 
 /* Document Structure (Matching Screenshot) */
@@ -94,7 +98,7 @@
 
 .invoice-room h2 {
     font-size: 20px;
-    font-weight: normal;
+    font-weight: bold;
     margin: 0;
     color: black;
 }
@@ -218,14 +222,58 @@
     transition: all var(--transition-base);
 }
 
-.print-action-btn:hover {
+.save-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 14px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-thai);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.print-action-btn:hover,
+.save-action-btn:hover:not(:disabled) {
     transform: translateY(-1px);
     box-shadow: var(--shadow-glow);
 }
 
-.print-action-btn svg {
+.save-action-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.print-action-btn svg,
+.save-action-btn svg {
     width: 20px;
     height: 20px;
+}
+
+.saving-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .close-action-btn {
@@ -244,6 +292,44 @@
 .close-action-btn:hover {
     background: var(--bg-glass-hover);
     color: var(--text-primary);
+}
+
+/* ============ MOBILE RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .print-overlay {
+        padding: 16px 8px;
+    }
+
+    .print-container {
+        max-width: 100%;
+    }
+
+    .close-btn {
+        top: -8px;
+        right: -8px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .close-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .print-actions {
+        flex-wrap: wrap;
+    }
+
+    .print-action-btn,
+    .save-action-btn {
+        font-size: 0.85rem;
+        padding: 12px;
+    }
+
+    .close-action-btn {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
 }
 
 /* Print Media Query */
@@ -291,6 +377,8 @@
         box-shadow: none;
         padding: 0;
         border-radius: 0;
+        width: 100%;
+        transform: none;
     }
 
     /* ซ่อนปุ่มต่างๆ โดยเฉพาะ */
