@@ -1,0 +1,174 @@
+.admin-panel {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ============ SIDEBAR ============ */
+.admin-sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, rgba(15, 20, 40, 0.98) 0%, rgba(10, 14, 30, 0.99) 100%);
+    backdrop-filter: blur(24px);
+    border-right: 1px solid rgba(59, 130, 246, 0.12);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xl) var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-brand svg {
+    width: 28px;
+    height: 28px;
+    color: var(--accent-primary-light);
+    filter: drop-shadow(0 0 8px var(--accent-primary-glow));
+}
+
+.sidebar-brand span {
+    font-size: 1.15rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: var(--space-lg) var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 13px 18px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-family: var(--font-thai);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.sidebar-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+.sidebar-btn:hover svg {
+    color: var(--accent-primary-light);
+}
+
+.sidebar-btn.active {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(249, 115, 22, 0.12) 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.sidebar-btn.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    bottom: 15%;
+    width: 3px;
+    background: var(--gradient-primary);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 12px var(--accent-primary-glow);
+}
+
+.sidebar-btn.active svg {
+    color: var(--accent-primary-light);
+    filter: drop-shadow(0 0 6px var(--accent-primary-glow));
+}
+
+.sidebar-footer {
+    padding: var(--space-md) var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.back-btn {
+    color: var(--text-muted) !important;
+}
+
+.back-btn:hover {
+    background: rgba(239, 68, 68, 0.08) !important;
+    color: #f87171 !important;
+    transform: translateX(-4px) !important;
+}
+
+.back-btn:hover svg {
+    color: #f87171 !important;
+}
+
+/* ============ MAIN CONTENT ============ */
+.admin-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: var(--space-xl) var(--space-2xl);
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse 800px 500px at 70% 10%, rgba(59, 130, 246, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 600px 400px at 30% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 70%);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 64px;
+    }
+
+    .sidebar-brand span,
+    .sidebar-btn span {
+        display: none;
+    }
+
+    .sidebar-brand {
+        justify-content: center;
+        padding: var(--space-lg) var(--space-sm);
+    }
+
+    .sidebar-btn {
+        justify-content: center;
+        padding: 14px;
+    }
+
+    .sidebar-btn.active::before {
+        display: none;
+    }
+
+    .admin-content {
+        margin-left: 64px;
+        padding: var(--space-md);
+    }
+}

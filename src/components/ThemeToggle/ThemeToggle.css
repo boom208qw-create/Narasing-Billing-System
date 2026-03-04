@@ -1,0 +1,82 @@
+.theme-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: inline-flex;
+}
+
+.toggle-track {
+    width: 56px;
+    height: 28px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+    transition: all var(--transition-base);
+}
+
+.theme-toggle:hover .toggle-track {
+    background: var(--bg-glass-hover);
+    border-color: var(--border-color-active);
+}
+
+.toggle-sun,
+.toggle-moon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: opacity var(--transition-base);
+}
+
+.toggle-sun svg,
+.toggle-moon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.toggle-sun {
+    color: #f59e0b;
+    /* Orange/Yellow sun */
+}
+
+.toggle-moon {
+    color: #60a5fa;
+    /* Blue moon */
+}
+
+/* The round indicator */
+.toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+/* Light mode overrides */
+.theme-toggle.light .toggle-thumb {
+    transform: translateX(26px);
+    background: white;
+}
+
+.theme-toggle.light .toggle-track {
+    background: rgba(59, 130, 246, 0.1);
+    /* Light blue track */
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.theme-toggle.light:hover .toggle-track {
+    background: rgba(59, 130, 246, 0.2);
+}

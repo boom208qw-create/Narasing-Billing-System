@@ -121,8 +121,8 @@ export default function RoomSearch({ roomNumber, setRoomNumber, onSearch, roomDa
                     <div className="room-info-grid">
                         <div className="info-card">
                             <div className="info-card-icon water">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M12 2C6 12 4 15.54 4 18a8 8 0 0016 0c0-2.46-2-6-8-16z" />
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
                                 </svg>
                             </div>
                             <div className="info-card-content">

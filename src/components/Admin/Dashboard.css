@@ -1,0 +1,301 @@
+.dashboard {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============ STAT GRID ============ */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ambient glow behind each card */
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Per-card glow colors */
+.stat-rooms::before {
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+}
+
+.stat-occupied::before {
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+}
+
+.stat-vacant::before {
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.15), transparent 70%);
+}
+
+.stat-bills::before {
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.15), transparent 70%);
+}
+
+.stat-revenue-month::before {
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15), transparent 70%);
+}
+
+.stat-revenue-total::before {
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.15), transparent 70%);
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.stat-icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+.stat-rooms .stat-icon {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.08) 100%);
+    color: #60a5fa;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+.stat-occupied .stat-icon {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.08) 100%);
+    color: #34d399;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.stat-vacant .stat-icon {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.08) 100%);
+    color: #fbbf24;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+}
+
+.stat-bills .stat-icon {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.08) 100%);
+    color: #22d3ee;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.1);
+}
+
+.stat-revenue-month .stat-icon {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.08) 100%);
+    color: #a78bfa;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
+}
+
+.stat-revenue-total .stat-icon {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(236, 72, 153, 0.08) 100%);
+    color: #f472b6;
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.1);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stat-number {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.stat-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+/* Staggered entrance animation */
+.stat-card:nth-child(1) {
+    animation: fadeInUp 0.4s ease 0.05s both;
+}
+
+.stat-card:nth-child(2) {
+    animation: fadeInUp 0.4s ease 0.1s both;
+}
+
+.stat-card:nth-child(3) {
+    animation: fadeInUp 0.4s ease 0.15s both;
+}
+
+.stat-card:nth-child(4) {
+    animation: fadeInUp 0.4s ease 0.2s both;
+}
+
+.stat-card:nth-child(5) {
+    animation: fadeInUp 0.4s ease 0.25s both;
+}
+
+.stat-card:nth-child(6) {
+    animation: fadeInUp 0.4s ease 0.3s both;
+}
+
+/* ============ RECENT BILLS ============ */
+.recent-bills {
+    padding: var(--space-xl);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(16px);
+    animation: fadeInUp 0.5s ease 0.35s both;
+}
+
+.section-subtitle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.section-subtitle svg {
+    width: 22px;
+    height: 22px;
+    color: var(--accent-primary-light);
+    filter: drop-shadow(0 0 6px var(--accent-primary-glow));
+}
+
+.empty-text {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--space-3xl);
+    font-size: 0.95rem;
+}
+
+/* ============ ADMIN TABLE ============ */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.88rem;
+}
+
+.admin-table th {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(249, 115, 22, 0.04) 100%);
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-table th:first-child {
+    border-radius: var(--radius-sm) 0 0 0;
+}
+
+.admin-table th:last-child {
+    border-radius: 0 var(--radius-sm) 0 0;
+}
+
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.admin-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(59, 130, 246, 0.04);
+}
+
+.admin-table tbody tr:hover td {
+    border-bottom-color: rgba(59, 130, 246, 0.08);
+}
+
+.admin-table .align-right {
+    text-align: right;
+}
+
+.room-cell {
+    font-weight: 700;
+    color: var(--accent-primary-light);
+    font-size: 0.95rem;
+}
+
+.total-cell {
+    font-weight: 700;
+    color: var(--accent-success-light);
+}
+
+.date-cell {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* ============ PAGE TITLE ============ */
+.admin-page-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    letter-spacing: -0.02em;
+}
+
+.admin-page-title svg {
+    width: 30px;
+    height: 30px;
+    color: var(--accent-primary-light);
+    filter: drop-shadow(0 0 10px var(--accent-primary-glow));
+}
