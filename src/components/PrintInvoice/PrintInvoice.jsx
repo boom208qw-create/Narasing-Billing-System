@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { formatShortDate } from '../../utils/calculations';
+import { getSettings } from '../../data/mockData';
 import './PrintInvoice.css';
 
 export default function PrintInvoice({ billingResult, onClose }) {
     const [isSaving, setIsSaving] = useState(false);
     const paperRef = useRef(null);
+    const settings = getSettings();
 
     // Dynamically scale the invoice paper to fit the viewport on mobile
     useEffect(() => {
@@ -121,7 +123,7 @@ export default function PrintInvoice({ billingResult, onClose }) {
                 {/* Invoice Content */}
                 <div className="invoice-paper" id="invoicePaper" ref={paperRef}>
                     <div className="invoice-header">
-                        <h1 className="invoice-title">บิลค่าเช่าห้องแถว นรสิงห์</h1>
+                        <h1 className="invoice-title">{settings.invoiceTitle}</h1>
                     </div>
 
                     <div className="invoice-room">
@@ -180,11 +182,11 @@ export default function PrintInvoice({ billingResult, onClose }) {
 
                     {/* Footer Notes */}
                     <div className="invoice-notes-box">
-                        <p>ชำระเงินทุกวันที่ 5 ของทุกเดือนหรือเกินกำหนดวันชำระนั้นๆ ปรับเพิ่มวันละ 100 บาท</p>
+                        <p>{settings.paymentNote}</p>
                     </div>
 
                     <div className="invoice-footer-contact">
-                        <p>ช่องทางการติดต่อ สอบถาม 092-5152-870 โก้ / 082-508-8909 พอล</p>
+                        <p>{settings.contactInfo}</p>
                     </div>
                 </div>
 

@@ -6,6 +6,7 @@
 const STORAGE_KEY = 'narasing_rooms_data';
 const BILLS_KEY = 'narasing_bills_data';
 const RATES_KEY = 'narasing_default_rates';
+const SETTINGS_KEY = 'narasing_settings';
 
 // ข้อมูลเริ่มต้น (ถ้ายังไม่มีใน localStorage)
 const initialRooms = [
@@ -328,4 +329,28 @@ export function getDashboardStats() {
         recentBills: [...bills].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10),
         roomsList: rooms.map(r => ({ roomNumber: r.roomNumber, isOccupied: r.isOccupied, tenantName: r.tenantName }))
     };
+}
+
+// ========== GENERAL SETTINGS ==========
+
+const defaultSettings = {
+    businessName: 'นรสิงห์',
+    invoiceTitle: 'บิลค่าเช่าห้องแถว นรสิงห์',
+    headerSubtitle: 'Narasing Billing System',
+    paymentNote: 'ชำระเงินทุกวันที่ 5 ของทุกเดือนหรือเกินกำหนดวันชำระนั้นๆ ปรับเพิ่มวันละ 100 บาท',
+    contactInfo: 'ช่องทางการติดต่อ สอบถาม 092-5152-870 โก้ / 082-508-8909 พอล'
+};
+
+export function getSettings() {
+    try {
+        const stored = localStorage.getItem(SETTINGS_KEY);
+        if (stored) return { ...defaultSettings, ...JSON.parse(stored) };
+    } catch (e) { /* ignore */ }
+    return { ...defaultSettings };
+}
+
+export function saveSettingsData(settings) {
+    const updated = { ...getSettings(), ...settings };
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));
+    return updated;
 }

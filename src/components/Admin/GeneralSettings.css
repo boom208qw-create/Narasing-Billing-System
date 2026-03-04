@@ -1,0 +1,148 @@
+.general-settings {
+    padding: 0;
+}
+
+.settings-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.setting-card {
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+}
+
+.setting-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.setting-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--accent-primary);
+}
+
+.setting-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.setting-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+}
+
+.setting-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.setting-input {
+    width: 100%;
+    font-size: 0.95rem;
+    font-family: var(--font-thai);
+}
+
+textarea.setting-input {
+    resize: vertical;
+    min-height: 72px;
+    line-height: 1.6;
+}
+
+/* Actions */
+.settings-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.save-settings-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 14px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-thai);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.save-settings-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+}
+
+.save-settings-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.save-settings-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.reset-settings-btn {
+    padding: 14px 24px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: var(--font-thai);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.reset-settings-btn:hover:not(:disabled) {
+    background: var(--bg-glass-hover);
+    color: var(--text-primary);
+}
+
+.reset-settings-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.reset-settings-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 768px) {
+    .settings-actions {
+        flex-direction: column;
+    }
+
+    .setting-card {
+        padding: var(--space-lg);
+    }
+}

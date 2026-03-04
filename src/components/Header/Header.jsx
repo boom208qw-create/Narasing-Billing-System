@@ -1,8 +1,11 @@
 import { formatThaiDate } from '../../utils/calculations';
+import { getSettings } from '../../data/mockData';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import './Header.css';
 
 export default function Header() {
+    const settings = getSettings();
+
     return (
         <header className="header" id="mainHeader">
             <div className="header-inner">
@@ -15,7 +18,7 @@ export default function Header() {
                     </div>
                     <div className="header-text">
                         <h1 className="header-title">ระบบคิดบิลค่าน้ำค่าไฟ</h1>
-                        <p className="header-subtitle">Narasing Billing System</p>
+                        <p className="header-subtitle">{settings.headerSubtitle}</p>
                     </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
