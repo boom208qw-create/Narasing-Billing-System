@@ -339,3 +339,50 @@
         justify-content: center;
     }
 }
+
+/* ============ LIGHT THEME OVERRIDES ============ */
+:root.light-theme .room-search {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .input,
+:root.light-theme .suggestions-dropdown {
+    background: var(--bg-input);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-primary);
+}
+
+:root.light-theme .suggestion-item {
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .suggestion-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+:root.light-theme .room-info-header {
+    border-color: var(--border-color);
+}
+
+:root.light-theme .info-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .info-card:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root.light-theme .info-value {
+    color: var(--text-primary);
+}
+
+:root.light-theme .info-label {
+    color: var(--text-secondary);
+}

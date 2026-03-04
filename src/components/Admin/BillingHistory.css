@@ -267,3 +267,36 @@
     border-radius: var(--radius-lg);
     text-align: center;
 }
+
+/* ============ LIGHT THEME OVERRIDES ============ */
+:root.light-theme .history-search,
+:root.light-theme .bill-card {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .search-input,
+:root.light-theme .edit-grid .form-group .input {
+    background: var(--bg-input);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .search-input:focus,
+:root.light-theme .edit-grid .form-group .input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-primary);
+}
+
+:root.light-theme .result-count {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .bill-card-details {
+    border-top-color: rgba(0, 0, 0, 0.05);
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .empty-state {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+}

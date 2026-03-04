@@ -150,3 +150,25 @@
         flex: 1;
     }
 }
+
+/* ============ LIGHT THEME OVERRIDES ============ */
+:root.light-theme .pricing-section {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .rate-input-group .input,
+:root.light-theme .inline-input {
+    background: var(--bg-input);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .rate-input-group .input:focus,
+:root.light-theme .inline-input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-primary);
+}
+
+:root.light-theme .saved-msg {
+    background: rgba(16, 185, 129, 0.15);
+}

@@ -7,6 +7,7 @@
 .app-main {
     flex: 1;
     padding: 0 var(--space-lg) var(--space-2xl);
+    min-width: 0;
 }
 
 .app-container {
@@ -15,6 +16,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+    min-width: 0;
 }
 
 /* Admin Toggle */
@@ -119,4 +121,15 @@
     .app-container {
         gap: var(--space-md);
     }
+}
+
+/* ============ LIGHT THEME OVERRIDES ============ */
+:root.light-theme .admin-toggle-btn {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .admin-toggle-btn:hover {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-primary);
 }

@@ -308,6 +308,40 @@
     border-color: rgba(255, 255, 255, 0.15);
 }
 
+/* ============ LIGHT THEME OVERRIDES ============ */
+:root.light-theme .room-table-card {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .icon-btn {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+:root.light-theme .modal-content {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.15);
+}
+
+:root.light-theme .form-group .input {
+    background: var(--bg-input);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .form-group .input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-primary);
+}
+
+:root.light-theme .cancel-btn {
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+:root.light-theme .cancel-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
 @media (max-width: 600px) {
     .form-grid {
         grid-template-columns: 1fr;

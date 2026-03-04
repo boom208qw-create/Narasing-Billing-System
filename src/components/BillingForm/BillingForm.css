@@ -152,3 +152,30 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ============ LIGHT THEME OVERRIDES ============ */
+:root.light-theme .billing-form {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+:root.light-theme .meter-input-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root.light-theme .meter-input-card:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root.light-theme .meter-input {
+    background: var(--bg-input);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+:root.light-theme .meter-input:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-primary);
+}

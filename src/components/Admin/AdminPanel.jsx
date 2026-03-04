@@ -14,6 +14,7 @@ const TABS = [
 
 export default function AdminPanel({ onBackToBilling }) {
     const [activeTab, setActiveTab] = useState('dashboard');
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     function renderContent() {
         switch (activeTab) {
@@ -25,10 +26,20 @@ export default function AdminPanel({ onBackToBilling }) {
         }
     }
 
+    function handleTabClick(tabId) {
+        setActiveTab(tabId);
+        setIsSidebarOpen(false); // Close sidebar on mobile after selection
+    }
+
     return (
         <div className="admin-panel">
+            {/* Mobile Overlay Backdrop */}
+            {isSidebarOpen && (
+                <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
+            )}
+
             {/* Sidebar */}
-            <aside className="admin-sidebar">
+            <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-brand">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
                     <span>Admin Panel</span>
@@ -39,7 +50,7 @@ export default function AdminPanel({ onBackToBilling }) {
                         <button
                             key={tab.id}
                             className={`sidebar-btn ${activeTab === tab.id ? 'active' : ''}`}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => handleTabClick(tab.id)}
                         >
                             {tab.icon}
                             <span>{tab.label}</span>
@@ -57,6 +68,16 @@ export default function AdminPanel({ onBackToBilling }) {
 
             {/* Main Content */}
             <main className="admin-content">
+                {/* Mobile Header with Hamburger Toggle */}
+                <div className="admin-mobile-header">
+                    <button className="mobile-toggle-btn" onClick={() => setIsSidebarOpen(true)}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+                    </button>
+                    <span className="mobile-header-title">
+                        {TABS.find(t => t.id === activeTab)?.label || 'Admin Panel'}
+                    </span>
+                </div>
+
                 {renderContent()}
             </main>
         </div>
