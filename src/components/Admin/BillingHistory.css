@@ -48,6 +48,68 @@
     font-weight: 500;
 }
 
+/* ============ EXPORT BUTTONS ============ */
+.export-row {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.export-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-thai);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.01em;
+}
+
+.export-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.export-csv {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(6, 182, 212, 0.25);
+}
+
+.export-csv:hover {
+    background: linear-gradient(135deg, #22d3ee, #06b6d4);
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+    transform: translateY(-1px);
+}
+
+.export-excel {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.export-excel:hover {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    transform: translateY(-1px);
+}
+
+.export-btn:active {
+    transform: translateY(0) scale(0.97);
+}
+
+:root.light-theme .export-row {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
 /* ============ BILL CARDS ============ */
 .bills-list {
     display: flex;

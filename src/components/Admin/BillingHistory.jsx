@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getBillHistory, deleteBillRecord, updateBillRecord } from '../../data/mockData';
 import { formatCurrency, calculateWaterBill, calculateElectricBill, calculateTotal } from '../../utils/calculations';
+import { exportToCSV, exportToExcel } from '../../utils/exportBills';
 import { useNotification } from '../../contexts/NotificationContext';
 import './BillingHistory.css';
 
@@ -90,12 +91,22 @@ export default function BillingHistory() {
                 ประวัติบิลย้อนหลัง
             </h2>
 
-            {/* Search */}
+            {/* Search & Export */}
             <div className="history-search glass-card">
                 <div className="search-row">
                     <input type="text" className="input search-input" placeholder="ค้นหาเลขห้อง..."
                         value={searchRoom} onChange={e => setSearchRoom(e.target.value)} />
                     <span className="result-count">{filteredBills.length} รายการ</span>
+                </div>
+                <div className="export-row">
+                    <button className="export-btn export-csv" onClick={() => { exportToCSV(filteredBills); showToast('ส่งออก CSV สำเร็จ', 'success'); }} id="exportCsvBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                        Export CSV
+                    </button>
+                    <button className="export-btn export-excel" onClick={() => { exportToExcel(filteredBills); showToast('ส่งออก Excel สำเร็จ', 'success'); }} id="exportExcelBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                        Export Excel
+                    </button>
                 </div>
             </div>
 
