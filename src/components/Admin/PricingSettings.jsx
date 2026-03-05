@@ -27,7 +27,7 @@ export default function PricingSettings() {
     }
 
     function handleRoomRateChange(roomNumber, field, value) {
-        updateRoom(roomNumber, { [field]: Number(value) });
+        updateRoom(roomNumber, { [field]: value === '' ? '' : Number(value) });
         setRooms(getAllRooms());
     }
 
@@ -48,12 +48,12 @@ export default function PricingSettings() {
                     <div className="rate-input-group">
                         <label>ค่าน้ำ (บาท/หน่วย)</label>
                         <input type="number" className="input" value={rates.waterRate}
-                            onChange={e => setRates(prev => ({ ...prev, waterRate: Number(e.target.value) }))} />
+                            onChange={e => setRates(prev => ({ ...prev, waterRate: e.target.value === '' ? '' : Number(e.target.value) }))} />
                     </div>
                     <div className="rate-input-group">
                         <label>ค่าไฟ (บาท/หน่วย)</label>
                         <input type="number" className="input" value={rates.electricRate}
-                            onChange={e => setRates(prev => ({ ...prev, electricRate: Number(e.target.value) }))} />
+                            onChange={e => setRates(prev => ({ ...prev, electricRate: e.target.value === '' ? '' : Number(e.target.value) }))} />
                     </div>
                     <div className="rate-actions">
                         <button className="submit-btn" onClick={handleSaveDefault}>บันทึก</button>

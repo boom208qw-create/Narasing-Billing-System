@@ -183,7 +183,7 @@ export function updateRoom(roomNumber, updates) {
     allowed.forEach(key => {
         if (updates[key] !== undefined) {
             if (['lastWaterMeter', 'lastElectricMeter', 'waterRate', 'electricRate', 'roomRent'].includes(key)) {
-                rooms[idx][key] = Number(updates[key]);
+                rooms[idx][key] = updates[key] === '' ? '' : Number(updates[key]);
             } else {
                 rooms[idx][key] = updates[key];
             }
@@ -290,9 +290,9 @@ export function setDefaultRates(rates) {
 export function applyRatesToAllRooms(rates) {
     const rooms = loadRooms();
     rooms.forEach(room => {
-        if (rates.waterRate !== undefined) room.waterRate = Number(rates.waterRate);
-        if (rates.electricRate !== undefined) room.electricRate = Number(rates.electricRate);
-        if (rates.roomRent !== undefined) room.roomRent = Number(rates.roomRent);
+        if (rates.waterRate !== undefined) room.waterRate = rates.waterRate === '' ? '' : Number(rates.waterRate);
+        if (rates.electricRate !== undefined) room.electricRate = rates.electricRate === '' ? '' : Number(rates.electricRate);
+        if (rates.roomRent !== undefined) room.roomRent = rates.roomRent === '' ? '' : Number(rates.roomRent);
     });
     saveRooms(rooms);
     return rooms;
