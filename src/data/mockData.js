@@ -270,6 +270,15 @@ export function deleteBillRecord(billId) {
     return { success: true };
 }
 
+export function deleteMultipleBillRecords(billIds) {
+    let bills = loadBills();
+    const before = bills.length;
+    bills = bills.filter(b => !billIds.includes(b.id));
+    if (bills.length === before) return { success: false, error: 'ไม่พบบิลเหล่านี้' };
+    saveBills(bills);
+    return { success: true };
+}
+
 // ========== DEFAULT RATES ==========
 
 export function getDefaultRates() {
