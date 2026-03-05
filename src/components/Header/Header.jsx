@@ -11,11 +11,7 @@ export default function Header() {
             <div className="header-inner">
                 <div className="header-brand">
                     <div className="header-icon">
-                        <img
-                            src="/assets/images/output-onlinegiftools.gif"
-                            alt="Logo"
-                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                        />
+                        <div className="header-icon-anim" />
                     </div>
                     <div className="header-text">
                         <h1 className="header-title">ระบบคิดบิลค่าน้ำค่าไฟ</h1>
