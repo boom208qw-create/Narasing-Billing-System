@@ -145,7 +145,7 @@ export default function Dashboard() {
                             </thead>
                             <tbody>
                                 {stats.recentBills.map(bill => (
-                                    <tr key={bill.id}>
+                                    <tr key={bill._id || Math.random()}>
                                         <td className="room-cell">{bill.roomNumber}</td>
                                         <td>{bill.tenantName}</td>
                                         <td className="align-right">{formatCurrency(bill.water?.amount || 0)}</td>
