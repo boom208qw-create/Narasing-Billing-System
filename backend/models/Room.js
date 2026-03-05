@@ -44,8 +44,7 @@ const roomSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Sort by roomNumber by default
-roomSchema.index({ roomNumber: 1 });
+// Index automatically created by unique: true on roomNumber
 
 const Room = mongoose.model('Room', roomSchema);
 export default Room;

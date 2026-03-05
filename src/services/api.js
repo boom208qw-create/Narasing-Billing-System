@@ -3,7 +3,8 @@
  * ตัวกลางเรียก Backend API แทน localStorage
  */
 
-const API_BASE = 'http://localhost:5000/api';
+// const API_BASE = 'http://localhost:5000/api'; // Development
+const API_BASE = 'https://narasing-billing-backend.onrender.com/api'; // Production
 
 async function request(url, options = {}) {
     const res = await fetch(`${API_BASE}${url}`, {
