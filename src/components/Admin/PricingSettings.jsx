@@ -4,7 +4,7 @@ import { useNotification } from '../../contexts/NotificationContext';
 import './PricingSettings.css';
 
 export default function PricingSettings() {
-    const [rates, setRates] = useState({ waterRate: 18, electricRate: 8 });
+    const [rates, setRates] = useState({ waterRate: 18, electricRate: 8, roomRent: 0 });
     const [rooms, setRooms] = useState([]);
     const { showToast, showConfirm } = useNotification();
 
@@ -79,6 +79,11 @@ export default function PricingSettings() {
                         <label>ค่าไฟ (บาท/หน่วย)</label>
                         <input type="number" className="input" value={rates.electricRate}
                             onChange={e => setRates(prev => ({ ...prev, electricRate: e.target.value === '' ? '' : Number(e.target.value) }))} />
+                    </div>
+                    <div className="rate-input-group">
+                        <label>ค่าเช่า (บาท)</label>
+                        <input type="number" className="input" value={rates.roomRent}
+                            onChange={e => setRates(prev => ({ ...prev, roomRent: e.target.value === '' ? '' : Number(e.target.value) }))} />
                     </div>
                     <div className="rate-actions">
                         <button className="submit-btn" onClick={handleSaveDefault}>บันทึก</button>

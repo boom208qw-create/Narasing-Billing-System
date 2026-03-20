@@ -27,7 +27,8 @@ export const getRates = async (req, res) => {
         const all = await Settings.getAll();
         res.json({
             waterRate: Number(all.waterRate) || 18,
-            electricRate: Number(all.electricRate) || 8
+            electricRate: Number(all.electricRate) || 8,
+            roomRent: Number(all.roomRent) || 0
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -37,14 +38,16 @@ export const getRates = async (req, res) => {
 // PUT /api/settings/rates
 export const updateRates = async (req, res) => {
     try {
-        const { waterRate, electricRate } = req.body;
+        const { waterRate, electricRate, roomRent } = req.body;
         const updates = {};
         if (waterRate !== undefined) updates.waterRate = Number(waterRate);
         if (electricRate !== undefined) updates.electricRate = Number(electricRate);
+        if (roomRent !== undefined) updates.roomRent = Number(roomRent);
         const settings = await Settings.setMultiple(updates);
         res.json({
             waterRate: Number(settings.waterRate) || 18,
-            electricRate: Number(settings.electricRate) || 8
+            electricRate: Number(settings.electricRate) || 8,
+            roomRent: Number(settings.roomRent) || 0
         });
     } catch (error) {
         res.status(500).json({ error: error.message });

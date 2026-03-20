@@ -23,7 +23,8 @@ settingsSchema.statics.defaults = {
     paymentNote: 'ชำระเงินทุกวันที่ 5 ของทุกเดือนหรือเกินกำหนดวันชำระนั้นๆ ปรับเพิ่มวันละ 100 บาท',
     contactInfo: 'ช่องทางการติดต่อ สอบถาม 092-5152-870 โก้ / 082-508-8909 พอล',
     waterRate: 18,
-    electricRate: 8
+    electricRate: 8,
+    roomRent: 0
 };
 
 // Get all settings as a flat object

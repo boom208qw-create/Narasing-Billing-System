@@ -102,7 +102,8 @@ const initialRooms = [
 
 const defaultRates = {
     waterRate: 18,
-    electricRate: 8
+    electricRate: 8,
+    roomRent: 0
 };
 
 // ========== LOAD / SAVE ==========
