@@ -1,0 +1,318 @@
+.bulk-billing-container {
+    padding: var(--space-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.bulk-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.rooms-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.bulk-loading, .bulk-error {
+    text-align: center;
+    padding: var(--space-3xl);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.bulk-error {
+    color: var(--accent-danger);
+}
+
+/* RoomBillingCard Styles */
+.room-billing-card {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.room-billing-card.success-pulse {
+    box-shadow: 0 0 0 2px var(--accent-success);
+    border-color: var(--accent-success);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.tenant-name {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+}
+
+.billing-grid-container {
+    background: rgba(0,0,0,0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+}
+
+.billing-grid {
+    display: grid;
+    grid-template-columns: 40px 1fr 1.2fr 1fr 1fr 1.5fr;
+    gap: var(--space-sm);
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.grid-header {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding-bottom: var(--space-xs);
+}
+
+.grid-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.grid-value {
+    color: var(--text-primary);
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.grid-value.ro {
+    background: rgba(255,255,255,0.05);
+    padding: 0.4rem;
+    border-radius: var(--radius-sm);
+}
+
+.grid-value.bg-total {
+    background: rgba(255,255,255,0.1);
+    font-weight: bold;
+}
+
+.center { text-align: center; }
+.right { text-align: right; }
+
+.grid-input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.05rem;
+    transition: all 0.2s;
+}
+
+.grid-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: var(--bg-input-focus);
+}
+
+.totals-section {
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    background: rgba(255,255,255,0.02);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+.total-row, .grand-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-label {
+    color: var(--text-secondary);
+}
+
+.total-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.grand-total-row {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-top: var(--space-sm);
+    border-top: 1px dashed var(--border-color);
+}
+
+.grand-total-value.highlight {
+    color: var(--accent-primary-light);
+    font-size: 1.4rem;
+}
+
+.fee-input-row {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.fee-note-input {
+    flex: 2;
+}
+
+.fee-amount-input {
+    flex: 1;
+    text-align: right;
+}
+
+.card-error {
+    color: var(--accent-danger);
+    font-size: 0.85rem;
+    margin-top: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: var(--radius-sm);
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-xs);
+}
+
+.action-btn {
+    padding: 0.6rem 2rem;
+    border-radius: var(--radius-md);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-thai);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-success {
+    background: var(--gradient-success);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .billing-grid-container {
+        padding: var(--space-xs);
+    }
+    
+    .billing-grid {
+        grid-template-columns: 35px 1fr 1.2fr 1fr 1fr 1.5fr;
+        gap: 2px;
+        font-size: 0.8rem;
+    }
+
+    .grid-header {
+        font-size: 0.65rem;
+        word-break: break-all;
+    }
+
+    .grid-input {
+        padding: 0.3rem 0.1rem;
+        font-size: 0.9rem;
+    }
+
+    .grid-value {
+        font-size: 0.85rem;
+    }
+
+    .grid-value.ro {
+        padding: 0.3rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .billing-grid {
+        /* Optimize for very small screens without scrolling */
+        grid-template-columns: 25px 1fr 1.2fr 0.8fr 0.8fr 1.2fr;
+        font-size: 0.75rem;
+    }
+    
+    .grid-header {
+        font-size: 0.6rem;
+    }
+    
+    .grid-input {
+        font-size: 0.8rem;
+    }
+}
+
+.add-extra-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.add-extra-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.remove-extra-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-danger);
+    border: none;
+    border-radius: 6px;
+    width: 38px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.remove-extra-btn:hover {
+    background: var(--accent-danger);
+    color: white;
+}
