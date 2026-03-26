@@ -175,7 +175,7 @@ export default function PrintInvoice({ billingResult, onClose }) {
                             </tr>
                             <tr>
                                 <td className="center-text" colSpan={5}>
-                                    ค่าปรับ {billingResult.fineNote ? `(${billingResult.fineNote})` : ''}
+                                    {billingResult.fineNote ? billingResult.fineNote : 'ค่าปรับ'}
                                 </td>
                                 <td className="align-right">{billingResult.fineAmount > 0 ? billingResult.fineAmount.toFixed(2) : '0'}</td>
                             </tr>

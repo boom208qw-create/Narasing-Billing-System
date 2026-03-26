@@ -50,10 +50,7 @@ export default function InvoiceSummary({ billingResult, onSaveBill, onPrint, isB
                         <div className="summary-row">
                             <div className="summary-label">
                                 <div className="label-dot" style={{ background: 'var(--accent-danger)' }}></div>
-                                <span>ค่าปรับ</span>
-                                {billingResult.fineNote && (
-                                    <span className="summary-detail">({billingResult.fineNote})</span>
-                                )}
+                                <span>{billingResult.fineNote ? billingResult.fineNote : 'ค่าปรับ'}</span>
                             </div>
                             <span className="summary-value">{formatCurrency(billingResult.fineAmount)}</span>
                         </div>

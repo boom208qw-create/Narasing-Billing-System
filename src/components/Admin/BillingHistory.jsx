@@ -211,7 +211,7 @@ export default function BillingHistory() {
                                 </div>
                                 {bill.fineAmount > 0 && (
                                     <div className="detail-item">
-                                        <span className="detail-label">ค่าปรับ {bill.fineNote ? `(${bill.fineNote})` : ''}</span>
+                                        <span className="detail-label">{bill.fineNote ? bill.fineNote : 'ค่าปรับ'}</span>
                                         <span>{formatCurrency(bill.fineAmount)}</span>
                                     </div>
                                 )}
