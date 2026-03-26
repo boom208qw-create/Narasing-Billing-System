@@ -213,11 +213,11 @@ export default function RoomBillingCard({ roomData, onPrint }) {
             <div className="card-actions" style={{gap: '10px'}}>
                 {success ? (
                     <>
-                        <button className="btn-success action-btn" disabled>✓ บันทึกสำเร็จ</button>
-                        <button className="btn-primary action-btn" onClick={() => onPrint(savedBill)}>🖨️ พิมพ์/ออกบิล</button>
+                        <button className="btn-success billing-btn" disabled>✓ บันทึกสำเร็จ</button>
+                        <button className="btn-primary billing-btn" onClick={() => onPrint(savedBill)}>🖨️ พิมพ์/ออกบิล</button>
                     </>
                 ) : (
-                    <button className="btn-primary action-btn" onClick={handleSave} disabled={isSaving}>
+                    <button className="btn-primary billing-btn" onClick={handleSave} disabled={isSaving}>
                         {isSaving ? 'กำลังบันทึก...' : 'สร้างบิล'}
                     </button>
                 )}

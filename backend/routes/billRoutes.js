@@ -1,7 +1,11 @@
 import express from 'express';
 import * as billController from '../controllers/billController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+// All bill routes require authentication
+router.use(authMiddleware);
 
 // GET /api/bills - ดึงบิลทั้งหมด (query: ?room=101)
 router.get('/', billController.getAllBills);

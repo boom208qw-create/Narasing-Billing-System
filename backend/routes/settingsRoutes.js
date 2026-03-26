@@ -1,7 +1,12 @@
 import express from 'express';
 import * as settingsController from '../controllers/settingsController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+// All settings routes require authentication
+router.use(authMiddleware);
+
 
 // GET /api/settings - ดึงการตั้งค่าทั้งหมด
 router.get('/', settingsController.getSettings);

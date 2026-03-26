@@ -4,7 +4,7 @@ import Room from '../models/Room.js';
 // GET /api/bills
 export const getAllBills = async (req, res) => {
     try {
-        const filter = {};
+        const filter = { userId: req.userId };
         if (req.query.room) {
             filter.roomNumber = req.query.room;
         }
@@ -18,7 +18,7 @@ export const getAllBills = async (req, res) => {
 // GET /api/bills/:id
 export const getBillById = async (req, res) => {
     try {
-        const bill = await Bill.findById(req.params.id);
+        const bill = await Bill.findOne({ _id: req.params.id, userId: req.userId });
         if (!bill) {
             return res.status(404).json({ error: 'ไม่พบบิลนี้' });
         }
@@ -31,7 +31,7 @@ export const getBillById = async (req, res) => {
 // POST /api/bills
 export const createBill = async (req, res) => {
     try {
-        const bill = await Bill.create(req.body);
+        const bill = await Bill.create({ ...req.body, userId: req.userId });
         res.status(201).json(bill);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -41,8 +41,8 @@ export const createBill = async (req, res) => {
 // PUT /api/bills/:id
 export const updateBill = async (req, res) => {
     try {
-        const bill = await Bill.findByIdAndUpdate(
-            req.params.id,
+        const bill = await Bill.findOneAndUpdate(
+            { _id: req.params.id, userId: req.userId },
             req.body,
             { new: true, runValidators: true }
         );
@@ -58,7 +58,7 @@ export const updateBill = async (req, res) => {
 // DELETE /api/bills/:id
 export const deleteBill = async (req, res) => {
     try {
-        const bill = await Bill.findByIdAndDelete(req.params.id);
+        const bill = await Bill.findOneAndDelete({ _id: req.params.id, userId: req.userId });
         if (!bill) {
             return res.status(404).json({ error: 'ไม่พบบิลนี้' });
         }
@@ -68,14 +68,15 @@ export const deleteBill = async (req, res) => {
     }
 };
 
-// DELETE /api/bills (body: { ids: [...] })
+// DELETE /api/bills/bulk  (body: { ids: [...] })
 export const deleteMultipleBills = async (req, res) => {
     try {
         const { ids } = req.body;
         if (!ids || !Array.isArray(ids) || ids.length === 0) {
             return res.status(400).json({ error: 'กรุณาระบุ IDs ของบิลที่ต้องการลบ' });
         }
-        const result = await Bill.deleteMany({ _id: { $in: ids } });
+        // Guard: only delete bills belonging to this user
+        const result = await Bill.deleteMany({ _id: { $in: ids }, userId: req.userId });
         res.json({ message: `ลบบิลสำเร็จ ${result.deletedCount} รายการ`, deletedCount: result.deletedCount });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -85,8 +86,8 @@ export const deleteMultipleBills = async (req, res) => {
 // GET /api/bills/stats/dashboard
 export const getDashboardStats = async (req, res) => {
     try {
-        const rooms = await Room.find({});
-        const bills = await Bill.find({});
+        const rooms = await Room.find({ userId: req.userId });
+        const bills = await Bill.find({ userId: req.userId });
 
         const now = new Date();
         const currentMonth = now.getMonth();

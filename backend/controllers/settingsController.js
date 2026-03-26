@@ -4,7 +4,7 @@ import Room from '../models/Room.js';
 // GET /api/settings
 export const getSettings = async (req, res) => {
     try {
-        const settings = await Settings.getAll();
+        const settings = await Settings.getAll(req.userId);
         res.json(settings);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -14,7 +14,7 @@ export const getSettings = async (req, res) => {
 // PUT /api/settings
 export const updateSettings = async (req, res) => {
     try {
-        const settings = await Settings.setMultiple(req.body);
+        const settings = await Settings.setMultiple(req.body, req.userId);
         res.json(settings);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -24,7 +24,7 @@ export const updateSettings = async (req, res) => {
 // GET /api/settings/rates
 export const getRates = async (req, res) => {
     try {
-        const all = await Settings.getAll();
+        const all = await Settings.getAll(req.userId);
         res.json({
             waterRate: Number(all.waterRate) || 18,
             electricRate: Number(all.electricRate) || 8,
@@ -43,7 +43,7 @@ export const updateRates = async (req, res) => {
         if (waterRate !== undefined) updates.waterRate = Number(waterRate);
         if (electricRate !== undefined) updates.electricRate = Number(electricRate);
         if (roomRent !== undefined) updates.roomRent = Number(roomRent);
-        const settings = await Settings.setMultiple(updates);
+        const settings = await Settings.setMultiple(updates, req.userId);
         res.json({
             waterRate: Number(settings.waterRate) || 18,
             electricRate: Number(settings.electricRate) || 8,
@@ -63,8 +63,9 @@ export const applyRatesToAllRooms = async (req, res) => {
         if (electricRate !== undefined) updates.electricRate = Number(electricRate);
         if (roomRent !== undefined) updates.roomRent = Number(roomRent);
 
-        await Room.updateMany({}, { $set: updates });
-        const rooms = await Room.find({}).sort({ roomNumber: 1 });
+        // Only update rooms belonging to this user
+        await Room.updateMany({ userId: req.userId }, { $set: updates });
+        const rooms = await Room.find({ userId: req.userId }).sort({ roomNumber: 1 });
         res.json(rooms);
     } catch (error) {
         res.status(500).json({ error: error.message });

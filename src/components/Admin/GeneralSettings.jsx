@@ -75,6 +75,13 @@ export default function GeneralSettings() {
             description: 'เบอร์โทรศัพท์หรือช่องทางติดต่อที่แสดงท้ายบิล',
             type: 'textarea',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
+        },
+        {
+            key: 'footerText',
+            label: 'ข้อความลิขสิทธิ์ (Footer)',
+            description: 'ข้อความที่แสดงด้านล่างสุดของเว็บ เช่น "© 2026 Narasing Billing System"',
+            type: 'text',
+            icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16z"/><path d="M13 14h-3v-4h3a2 2 0 010 4zm0-6h-5v8h5a4 4 0 000-8z"/></svg>
         }
     ];
 

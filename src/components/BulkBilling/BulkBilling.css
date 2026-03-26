@@ -201,7 +201,7 @@
     margin-top: var(--space-xs);
 }
 
-.action-btn {
+.billing-btn {
     padding: 0.6rem 2rem;
     border-radius: var(--radius-md);
     border: none;

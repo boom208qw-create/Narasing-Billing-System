@@ -4,7 +4,6 @@ const roomSchema = new mongoose.Schema({
     roomNumber: {
         type: String,
         required: [true, 'กรุณาระบุเลขห้อง'],
-        unique: true,
         trim: true
     },
     tenantName: {
@@ -39,12 +38,18 @@ const roomSchema = new mongoose.Schema({
     isOccupied: {
         type: Boolean,
         default: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, {
     timestamps: true
 });
 
-// Index automatically created by unique: true on roomNumber
+// Compound unique index: same roomNumber allowed across different users
+roomSchema.index({ roomNumber: 1, userId: 1 }, { unique: true });
 
 const Room = mongoose.model('Room', roomSchema);
 export default Room;

@@ -1,7 +1,11 @@
 import express from 'express';
 import * as roomController from '../controllers/roomController.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+// All room routes require authentication
+router.use(authMiddleware);
 
 // GET /api/rooms - ดึงห้องทั้งหมด
 router.get('/', roomController.getAllRooms);

@@ -4,9 +4,11 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
 // Routes
+import authRoutes from './routes/authRoutes.js';
 import roomRoutes from './routes/roomRoutes.js';
 import billRoutes from './routes/billRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -28,9 +30,11 @@ app.use(cors({
 app.use(express.json());
 
 // ========== Routes ==========
+app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/bills', billRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/users', userRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
