@@ -3,8 +3,9 @@
  */
 import axios from 'axios';
 
-// const API_BASE = 'https://narasing-billing-backend.onrender.com/api'; // Production
-const API_BASE = 'http://localhost:5000/api'; // Development
+const API_BASE = import.meta.env.PROD 
+    ? 'https://narasing-billing-backend.onrender.com/api' 
+    : 'http://localhost:5000/api';
 
 const api = axios.create({
     baseURL: API_BASE,

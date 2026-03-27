@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import './LoginScreen.css';
 
-// Use localhost for dev (backend running locally), production URL for deploy
-// const API_BASE = 'https://narasing-billing-backend.onrender.com/api';
-const API_BASE = 'http://localhost:5000/api'; // for local dev
+const API_BASE = import.meta.env.PROD 
+    ? 'https://narasing-billing-backend.onrender.com/api'
+    : 'http://localhost:5000/api';
 
 export default function LoginScreen() {
     const { login } = useAuth();
