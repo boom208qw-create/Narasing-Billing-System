@@ -176,22 +176,22 @@ export default function AccountManager() {
                     <tbody>
                         {users.map(u => (
                             <tr key={u._id} className={u.status === 'suspended' ? 'suspended-row' : ''}>
-                                <td className="username-cell">
+                                <td className="username-cell" data-label="ชื่อผู้ใช้ (USERNAME)">
                                     {u.username}
                                     {u._id === user.id && <span className="badge-you">คุณ</span>}
                                 </td>
-                                <td>
+                                <td data-label="ระดับสิทธิ์ (ROLE)">
                                     <span className={`role-badge ${u.role}`}>
                                         {u.role === 'admin' ? 'แอดมิน' : 'ผู้เช่า/พนักงาน'}
                                     </span>
                                 </td>
-                                <td>
+                                <td data-label="สถานะ (STATUS)">
                                     <span className={`status-badge ${u.status}`}>
                                         {u.status === 'active' ? 'ปกติ' : u.status === 'pending' ? 'รออนุมัติ' : 'ถูกระงับ'}
                                     </span>
                                 </td>
-                                <td>{new Date(u.createdAt).toLocaleDateString('th-TH')}</td>
-                                <td className="actions-cell">
+                                <td data-label="วันที่สร้าง">{new Date(u.createdAt).toLocaleDateString('th-TH')}</td>
+                                <td className="actions-cell" data-label="จัดการ">
                                     <div className="action-buttons">
                                         <button 
                                             className="am-action-btn key-btn" 

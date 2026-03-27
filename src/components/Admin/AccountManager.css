@@ -399,3 +399,101 @@
 .confirm-modal h3 {
     margin-bottom: var(--space-md);
 }
+
+/* Mobile Responsive Table Overlay */
+@media (max-width: 768px) {
+    .account-table-wrapper {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+        overflow-x: hidden;
+    }
+    
+    .account-table, .account-table tbody, .account-table tr, .account-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    /* Hide the table headers on mobile */
+    .account-table thead {
+        display: none;
+    }
+    
+    /* Turn each row into a distinct card */
+    .account-table tr {
+        margin-bottom: var(--space-xl);
+        background: linear-gradient(135deg, rgba(15, 23, 41, 0.4) 0%, rgba(10, 14, 30, 0.6) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-xl);
+        padding: var(--space-md) var(--space-md) 0 var(--space-md); /* Zero bottom padding so buttons span corner to corner if needed */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(12px);
+    }
+    
+    .account-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: right;
+        min-height: 48px;
+    }
+    
+    .account-table td:last-child {
+        border-bottom: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding-top: var(--space-md);
+        padding-bottom: var(--space-lg);
+    }
+    
+    /* CSS magic to insert the cell labels on the left based on data-label attribute */
+    .account-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        width: 45%;
+        text-align: left;
+    }
+
+    .username-cell {
+        justify-content: space-between !important;
+        font-size: 1.05rem;
+    }
+    
+    .action-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+    
+    .am-action-btn {
+        flex: 1; /* Stretch buttons evenly */
+        min-width: calc(50% - 10px);
+    }
+    
+    /* Adjust spacing and visual bugs for badges on mobile */
+    .account-table td span.role-badge,
+    .account-table td span.status-badge {
+        flex: 0 0 auto;
+    }
+
+    /* Light theme wrapper overrides */
+    :root.light-theme .account-table tr {
+        background: var(--bg-card);
+        border-color: rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-md);
+    }
+    
+    :root.light-theme .account-table td {
+        border-bottom-color: rgba(0,0,0,0.05);
+    }
+}
+
