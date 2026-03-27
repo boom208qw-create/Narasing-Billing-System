@@ -10,13 +10,13 @@ import './App.css';
 function App() {
     const { isAuthenticated, user, logout } = useAuth();
     const [currentPage, setCurrentPage] = useState('billing'); // 'billing' | 'admin'
-    const [footerText, setFooterText] = useState('© 2026 Narasing Billing System');
+    const [footerText, setFooterText] = useState('');
 
     useEffect(() => {
         if (isAuthenticated) {
             settingsAPI.get()
                 .then(data => {
-                    if (data.footerText) setFooterText(data.footerText);
+                    setFooterText(data.footerText || '');
                 })
                 .catch(err => console.error('Failed to load footer text', err));
         }

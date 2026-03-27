@@ -26,8 +26,8 @@ export const getRates = async (req, res) => {
     try {
         const all = await Settings.getAll(req.userId);
         res.json({
-            waterRate: Number(all.waterRate) || 18,
-            electricRate: Number(all.electricRate) || 8,
+            waterRate: Number(all.waterRate) || 0,
+            electricRate: Number(all.electricRate) || 0,
             roomRent: Number(all.roomRent) || 0
         });
     } catch (error) {
@@ -45,8 +45,8 @@ export const updateRates = async (req, res) => {
         if (roomRent !== undefined) updates.roomRent = Number(roomRent);
         const settings = await Settings.setMultiple(updates, req.userId);
         res.json({
-            waterRate: Number(settings.waterRate) || 18,
-            electricRate: Number(settings.electricRate) || 8,
+            waterRate: Number(settings.waterRate) || 0,
+            electricRate: Number(settings.electricRate) || 0,
             roomRent: Number(settings.roomRent) || 0
         });
     } catch (error) {

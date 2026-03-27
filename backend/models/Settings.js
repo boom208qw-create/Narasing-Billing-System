@@ -22,16 +22,16 @@ const settingsSchema = new mongoose.Schema({
 // Compound unique index: same key allowed across different users
 settingsSchema.index({ key: 1, userId: 1 }, { unique: true });
 
-// Default settings values
+// Default settings values (empty for new users — they fill in their own)
 settingsSchema.statics.defaults = {
-    businessName: 'นรสิงห์',
-    invoiceTitle: 'บิลค่าเช่าห้องแถว นรสิงห์',
-    headerSubtitle: 'Narasing Billing System',
-    paymentNote: 'ชำระเงินทุกวันที่ 5 ของทุกเดือนหรือเกินกำหนดวันชำระนั้นๆ ปรับเพิ่มวันละ 100 บาท',
-    contactInfo: 'ช่องทางการติดต่อ สอบถาม 092-5152-870 โก้ / 082-508-8909 พอล',
-    footerText: '© 2026 Narasing Billing System',
-    waterRate: 18,
-    electricRate: 8,
+    businessName: '',
+    invoiceTitle: '',
+    headerSubtitle: '',
+    paymentNote: '',
+    contactInfo: '',
+    footerText: '',
+    waterRate: 0,
+    electricRate: 0,
     roomRent: 0
 };
 
