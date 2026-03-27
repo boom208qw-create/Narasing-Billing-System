@@ -173,12 +173,24 @@ export default function PrintInvoice({ billingResult, onClose }) {
                                 <td className="align-right">{billingResult.electric.rate}</td>
                                 <td className="align-right">{billingResult.electric.amount.toFixed(2)}</td>
                             </tr>
-                            <tr>
-                                <td className="center-text" colSpan={5}>
-                                    {billingResult.fineNote ? billingResult.fineNote : 'ค่าปรับ'}
-                                </td>
-                                <td className="align-right">{billingResult.fineAmount > 0 ? billingResult.fineAmount.toFixed(2) : '0'}</td>
-                            </tr>
+                            {/* Extra Charges – each on its own row */}
+                            {billingResult.extras && billingResult.extras.length > 0 ? (
+                                billingResult.extras.map((item, idx) => (
+                                    <tr key={idx}>
+                                        <td className="center-text" colSpan={5}>
+                                            {item.name || 'ค่าใช้จ่ายเพิ่มเติม'}
+                                        </td>
+                                        <td className="align-right">{(item.amount || 0).toFixed(2)}</td>
+                                    </tr>
+                                ))
+                            ) : billingResult.fineAmount > 0 ? (
+                                <tr>
+                                    <td className="center-text" colSpan={5}>
+                                        {billingResult.fineNote ? billingResult.fineNote : 'ค่าปรับ'}
+                                    </td>
+                                    <td className="align-right">{billingResult.fineAmount.toFixed(2)}</td>
+                                </tr>
+                            ) : null}
                             <tr>
                                 <td className="center-text" colSpan={5}>ค่าเช่า</td>
                                 <td className="align-right">{billingResult.roomRent}</td>

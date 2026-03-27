@@ -45,8 +45,18 @@ export default function InvoiceSummary({ billingResult, onSaveBill, onPrint, isB
                         <span className="summary-value">{formatCurrency(billingResult.electric.amount)}</span>
                     </div>
 
-                    {/* ค่าปรับ (ถ้ามี) */}
-                    {billingResult.fineAmount > 0 && (
+                    {/* ค่าใช้จ่ายเพิ่มเติม (แยกแต่ละรายการ) */}
+                    {billingResult.extras && billingResult.extras.length > 0 ? (
+                        billingResult.extras.map((item, idx) => (
+                            <div className="summary-row" key={idx}>
+                                <div className="summary-label">
+                                    <div className="label-dot" style={{ background: 'var(--accent-danger)' }}></div>
+                                    <span>{item.name || 'ค่าใช้จ่ายเพิ่มเติม'}</span>
+                                </div>
+                                <span className="summary-value">{formatCurrency(item.amount || 0)}</span>
+                            </div>
+                        ))
+                    ) : billingResult.fineAmount > 0 ? (
                         <div className="summary-row">
                             <div className="summary-label">
                                 <div className="label-dot" style={{ background: 'var(--accent-danger)' }}></div>
@@ -54,7 +64,7 @@ export default function InvoiceSummary({ billingResult, onSaveBill, onPrint, isB
                             </div>
                             <span className="summary-value">{formatCurrency(billingResult.fineAmount)}</span>
                         </div>
-                    )}
+                    ) : null}
 
                     {/* ค่าเช่าห้อง */}
                     <div className="summary-row">

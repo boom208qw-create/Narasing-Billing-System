@@ -104,6 +104,7 @@ export default function RoomBillingCard({ roomData, onPrint }) {
                 },
                 fineAmount: fAmount,
                 fineNote: fNote,
+                extras: validExtras.map(e => ({ name: e.name.trim(), amount: parseFloat(e.amount) })),
                 roomRent: roomData.roomRent,
                 total
             };

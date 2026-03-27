@@ -40,6 +40,10 @@ const billSchema = new mongoose.Schema({
         default: '',
         trim: true
     },
+    extras: [{
+        name: { type: String, trim: true },
+        amount: { type: Number, default: 0 }
+    }],
     roomRent: {
         type: Number,
         default: 0

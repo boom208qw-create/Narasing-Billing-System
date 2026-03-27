@@ -209,12 +209,19 @@ export default function BillingHistory() {
                                     <span className="detail-label">ค่าไฟ</span>
                                     <span>{bill.electric?.units || 0} หน่วย = {formatCurrency(bill.electric?.amount || 0)}</span>
                                 </div>
-                                {bill.fineAmount > 0 && (
+                                {bill.extras && bill.extras.length > 0 ? (
+                                    bill.extras.map((item, idx) => (
+                                        <div className="detail-item" key={idx}>
+                                            <span className="detail-label">{item.name || 'ค่าใช้จ่ายเพิ่มเติม'}</span>
+                                            <span>{formatCurrency(item.amount || 0)}</span>
+                                        </div>
+                                    ))
+                                ) : bill.fineAmount > 0 ? (
                                     <div className="detail-item">
                                         <span className="detail-label">{bill.fineNote ? bill.fineNote : 'ค่าปรับ'}</span>
                                         <span>{formatCurrency(bill.fineAmount)}</span>
                                     </div>
-                                )}
+                                ) : null}
                                 <div className="detail-item">
                                     <span className="detail-label">ค่าเช่า</span>
                                     <span>{formatCurrency(bill.roomRent)}</span>
