@@ -24,7 +24,7 @@ export default function AdminPanel({ onBackToBilling }) {
 
     function renderContent() {
         switch (activeTab) {
-            case 'dashboard': return <Dashboard />;
+            case 'dashboard': return <Dashboard onNavigate={setActiveTab} />;
             case 'rooms': return <RoomManager />;
             case 'pricing': return <PricingSettings />;
             case 'history': return <BillingHistory />;
