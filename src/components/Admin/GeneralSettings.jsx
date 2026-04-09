@@ -53,6 +53,7 @@ export default function GeneralSettings() {
             label: 'หัวข้อใบแจ้งหนี้',
             description: 'ข้อความบรรทัดแรกสุดของบิล เช่น "บิลค่าเช่าห้องแถว นรสิงห์"',
             type: 'text',
+            placeholder: 'เช่น บิลค่าเช่าห้องแถว ชื่อกิจการ',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
         },
         {
@@ -60,6 +61,7 @@ export default function GeneralSettings() {
             label: 'ข้อความ Subtitle (Header)',
             description: 'ข้อความด้านล่างชื่อหลักในส่วนหัวเว็บ',
             type: 'text',
+            placeholder: 'เช่น ระบบจัดการบิลค่าน้ำค่าไฟ',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 21V9" /></svg>
         },
         {
@@ -67,6 +69,7 @@ export default function GeneralSettings() {
             label: 'ข้อความเตือนการชำระเงิน',
             description: 'ข้อความเงื่อนไขการชำระเงินที่แสดงท้ายบิล',
             type: 'textarea',
+            placeholder: 'เช่น ชำระเงินทุกวันที่ 5 ของทุกเดือน',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
         },
         {
@@ -74,6 +77,7 @@ export default function GeneralSettings() {
             label: 'ข้อมูลติดต่อ',
             description: 'เบอร์โทรศัพท์หรือช่องทางติดต่อที่แสดงท้ายบิล',
             type: 'textarea',
+            placeholder: 'เช่น โทร 08X-XXX-XXXX',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
         },
         {
@@ -81,6 +85,7 @@ export default function GeneralSettings() {
             label: 'ข้อความลิขสิทธิ์ (Footer)',
             description: 'ข้อความที่แสดงด้านล่างสุดของเว็บ เช่น "© 2026 Narasing Billing System"',
             type: 'text',
+            placeholder: 'เช่น © 2026 ชื่อกิจการ',
             icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16z"/><path d="M13 14h-3v-4h3a2 2 0 010 4zm0-6h-5v8h5a4 4 0 000-8z"/></svg>
         }
     ];
@@ -110,6 +115,7 @@ export default function GeneralSettings() {
                                 className="input setting-input"
                                 value={settings[field.key]}
                                 onChange={e => handleChange(field.key, e.target.value)}
+                                placeholder={field.placeholder}
                                 rows={3}
                             />
                         ) : (
@@ -118,6 +124,7 @@ export default function GeneralSettings() {
                                 className="input setting-input"
                                 value={settings[field.key]}
                                 onChange={e => handleChange(field.key, e.target.value)}
+                                placeholder={field.placeholder}
                             />
                         )}
                     </div>
