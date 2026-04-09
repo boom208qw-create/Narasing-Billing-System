@@ -59,7 +59,6 @@ export default function RoomBillingCard({ roomData, onPrint }) {
     const handleSave = async () => {
         setError('');
         setSuccess(false);
-        setSavedBill(null);
         
         const wMeter = parseFloat(waterMeter);
         const eMeter = parseFloat(electricMeter);
@@ -84,7 +83,7 @@ export default function RoomBillingCard({ roomData, onPrint }) {
             const fAmount = validExtras.reduce((sum, e) => sum + parseFloat(e.amount), 0);
             const fNote = validExtras.map(e => `${e.name.trim()}`).join(', ');
 
-            const billingResult = {
+            const billingData = {
                 roomNumber: roomData.roomNumber,
                 tenantName: roomData.tenantName,
                 billingDate: new Date().toISOString(),
@@ -109,16 +108,29 @@ export default function RoomBillingCard({ roomData, onPrint }) {
                 total
             };
 
-            await billAPI.create(billingResult);
+            let result;
+            if (savedBill && savedBill._id) {
+                // Update existing bill
+                result = await billAPI.update(savedBill._id, billingData);
+            } else {
+                // Create new bill
+                result = await billAPI.create(billingData);
+            }
             await roomAPI.updateMeters(roomData.roomNumber, wMeter, eMeter);
             
-            setSavedBill(billingResult);
+            // Store the bill with _id for future updates
+            setSavedBill(result && result._id ? result : { ...billingData, _id: result?._id });
             setSuccess(true);
         } catch (err) {
             setError(err.message || 'เกิดข้อผิดพลาดในการบันทึกบิล');
         } finally {
             setIsSaving(false);
         }
+    };
+
+    const handleEdit = () => {
+        setSuccess(false);
+        setError('');
     };
 
     return (
@@ -147,6 +159,7 @@ export default function RoomBillingCard({ roomData, onPrint }) {
                             className="grid-input" 
                             value={waterMeter} 
                             onChange={e => setWaterMeter(e.target.value)} 
+                            disabled={success}
                         />
                     </div>
                     <div className="grid-value ro center">{waterResult.units}</div>
@@ -162,6 +175,7 @@ export default function RoomBillingCard({ roomData, onPrint }) {
                             className="grid-input" 
                             value={electricMeter} 
                             onChange={e => setElectricMeter(e.target.value)} 
+                            disabled={success}
                         />
                     </div>
                     <div className="grid-value ro center">{electricResult.units}</div>
@@ -185,6 +199,7 @@ export default function RoomBillingCard({ roomData, onPrint }) {
                             placeholder="รายการเพิ่มเติม (เช่น ค่าขยะ)" 
                             value={extra.name}
                             onChange={e => updateExtra(extra.id, 'name', e.target.value)}
+                            disabled={success}
                         />
                         <input 
                             type="number" 
@@ -192,16 +207,19 @@ export default function RoomBillingCard({ roomData, onPrint }) {
                             placeholder="จำนวนเงิน" 
                             value={extra.amount}
                             onChange={e => updateExtra(extra.id, 'amount', e.target.value)}
+                            disabled={success}
                         />
-                        <button className="remove-extra-btn" onClick={() => handleRemoveExtra(extra.id)} title="ลบรายการ">
+                        <button className="remove-extra-btn" onClick={() => handleRemoveExtra(extra.id)} title="ลบรายการ" disabled={success}>
                             ✕
                         </button>
                     </div>
                 ))}
 
-                <button className="add-extra-btn" onClick={handleAddExtra}>
-                    + ค่าใช้จ่ายเพิ่มเติม
-                </button>
+                {!success && (
+                    <button className="add-extra-btn" onClick={handleAddExtra}>
+                        + ค่าใช้จ่ายเพิ่มเติม
+                    </button>
+                )}
 
                 <div className="grand-total-row">
                     <span className="grand-total-label">รวมทั้งหมด</span>
@@ -214,12 +232,12 @@ export default function RoomBillingCard({ roomData, onPrint }) {
             <div className="card-actions" style={{gap: '10px'}}>
                 {success ? (
                     <>
-                        <button className="btn-success billing-btn" disabled>✓ บันทึกสำเร็จ</button>
+                        <button className="btn-warning billing-btn" onClick={handleEdit}>✏️ แก้ไขบิล</button>
                         <button className="btn-primary billing-btn" onClick={() => onPrint(savedBill)}>🖨️ พิมพ์/ออกบิล</button>
                     </>
                 ) : (
                     <button className="btn-primary billing-btn" onClick={handleSave} disabled={isSaving}>
-                        {isSaving ? 'กำลังบันทึก...' : 'สร้างบิล'}
+                        {isSaving ? 'กำลังบันทึก...' : savedBill?._id ? '💾 บันทึกการแก้ไข' : 'สร้างบิล'}
                     </button>
                 )}
             </div>
